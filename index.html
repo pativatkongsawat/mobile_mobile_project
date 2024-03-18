@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Work6</title>
+    <title>HOME PAGE</title>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
@@ -30,12 +30,20 @@
         left: 50%; 
         transform: translate(-50%, -50%); 
       }
+      .img{
+        max-width: 100%;
+        margin: 0 auto; 
+        height: auto;
+        display: block;
+       
+      }
       
     </style>
 </head>
   <body>
     <div id="app" class="centered-login">
       <v-app>
+        
         <v-container>
           
                 <nav class="navbar bg-body-tertiary">
@@ -50,18 +58,26 @@
                     </form>
                   </div>
                 </nav>
-                        
-        </v-container>   
+                
+                <div id="app" class="centered-login">
+                  <v-app>
+                    <div v-if = "!user" >
+                      <img src="/imeges/img.jpg" class="img" alt="img">
+                  </div> 
+                </v-app>
+            </div>
+          </v-container>   
              <v-card-actions>
               <v-btn @click="google_login()" v-if="user"><a href="student_page.html" class="btn btn-bs-dark-rgb">ไปหน้าเช็คชื่อ</a></v-btn>
                
                 <div v-for="(t) in teachers">
-                  <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
+                  !--<v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
                 </div>   
               </div>
-                   
+                  
           </v-card-actions>
-
+          
+          
 
       </v-app>
         
