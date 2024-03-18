@@ -16,117 +16,59 @@
 
     <style>
        
-        
-        .btn.btn-success {
-          float: right;
-          margin-left: 10px;
-      }
 
-        
+      .btn.btn-success {
+        float: right;
+        margin-left: 10px;
+          
+      }
+      .btn.btn-bs-dark-rgb{
+        background-color: rgb(157, 157, 157);
+        color: white;
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+      }
+      
     </style>
 </head>
   <body>
     <div id="app" class="centered-login">
       <v-app>
         <v-container>
+          
                 <nav class="navbar bg-body-tertiary">
                   <div class="container-fluid">
                     <a class="navbar-brand">ระบบเช็คชื่อ</a>
                     <form class="d-flex" role="login">
-    
-                      <v-btn @click="google_login()" v-if="!user" class="btn btn-bs-secondary-color">เข้าสู่ระบบ</v-btn>
-                      <div v-if="user">
-                          <v-btn @click="google_logout()" v-if="user" class="btn btn-secondary-color">ออกจากระบบ</v-btn>   
-                          <div v-for="(s) in students">
-                            <v-btn v-if="user.email == s.email"><a href="student_page.html" class="btn btn-success">เข้าสู่หน้าเช็คชื่อ</a></v-btn>
-                          </div> 
-                        <div v-for="(t) in teachers">
-                          <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
-                        </div>   
-                      </div>
+                          <v-btn @click="google_login()" v-if="!user" class="btn btn-bs-secondary-color">เข้าสู่ระบบ</v-btn>
+                    <div v-if="user">
+                          <v-btn @click="google_logout()" v-if="user" class="btn btn-secondary-color">ออกจากระบบ</v-btn>    
+                        
+                     </div>
                     </form>
                   </div>
                 </nav>
-                
+                        
+        </v-container>   
+             <v-card-actions>
+              <v-btn @click="google_login()" v-if="user"><a href="student_page.html" class="btn btn-bs-dark-rgb">ไปหน้าเช็คชื่อ</a></v-btn>
+               
+                <div v-for="(t) in teachers">
+                  <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
+                </div>   
+              </div>
                    
-                </div>
+          </v-card-actions>
 
 
-
-                <v-card-actions>
-                    
-                    
-                         
-                </v-card-actions>
-            </v-card>
-            <v-card v-if="editmode">
-                <v-card-text class="pa-6">
-                    <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
-                    <v-text-field v-model="editstd.id" label="รหัส"></v-text-field>
-                    <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว']"></v-combobox>
-                    <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
-                    <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
-                    <v-text-field v-model="editstd.email" label="E-mail"></v-text-field>
-                    <v-text-field v-model="editstd.section" label="Section"></v-text-field>
-               </v-card-text>
-               <v-card-actions>
-
-                    <v-btn @click="savedata()">Save</v-btn>
-                    <v-btn @click="editmode=0">Cancel</v-btn>
-               </v-card-actions>
-             </v-card>
-            
-            <v-card v-if="editmode">
-                <v-card-text class="pa-6">
-                    <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
-                    <v-text-field v-model="editstd.id" label="รหัส"></v-text-field>
-                    <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว']"></v-combobox>
-                    <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
-                    <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
-                    <v-text-field v-model="editstd.email" label="E-mail"></v-text-field>
-                    <v-text-field v-model="editstd.section" label="Section"></v-text-field>
-               </v-card-text>
-               <v-card-actions>
-
-                    <v-btn @click="savedata()">Save</v-btn>
-                    <v-btn @click="editmode=0">Cancel</v-btn>
-               </v-card-actions>
-             </v-card>
-            <v-card v-if="editmode">
-                <v-card-text class="pa-6">
-                    <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
-                    <v-text-field v-model="editstd.id" label="รหัส"></v-text-field>
-                    <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว']"></v-combobox>
-                    <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
-                    <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
-                    <v-text-field v-model="editstd.email" label="E-mail"></v-text-field>
-                    <v-text-field v-model="editstd.section" label="Section"></v-text-field>
-               </v-card-text>
-               <v-card-actions>
-
-                    <v-btn @click="savedata()">Save</v-btn>
-                    <v-btn @click="editmode=0">Cancel</v-btn>
-               </v-card-actions>
-             </v-card>
-                      
-          <div class="pa-6 text-center">{{footer}}</div>
-        </v-container>        
       </v-app>
-        <v-card-actions>
-            <template v-if="user">
-            <div class="pa-2">
-                <!-- <v-avatar><img :src="user.photoURL" /></v-avatar> -->
-            </div>
-            <div class="pa-2">
-                <!-- {{user.displayName}}<br />
-                {{user.email}}<br /> -->
-            </div>
-        </template>
-        <!--
-        <v-btn @click="google_login()"  v-if="!user">Login</v-btn>
-        <v-btn @click="google_logout()" v-if="user"> Logout</v-btn>-->
-        </v-card-actions>
-        <div>{{ustudent}}</div>
+        
+          
+                 
+            
+        
 
         <v-card-text class="pa-6">
           <table width="100%">
