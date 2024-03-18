@@ -108,9 +108,9 @@
                     <v-card-actions>
                         <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
                         <div v-if="user">
-                          <v-btn @click="google_logout()" v-if="user" class="btn btn-danger"> Logout</v-btn>   
+                          <v-btn @click="google_logout()" v-if="user" class="btn btn-danger">ออกจากระบบ</v-btn>   
                           <div v-for="(s) in students">
-                            <v-btn v-if="user.email == s.email"><a href="students.html">Next for students</a></v-btn>
+                            <v-btn v-if="user.email == s.email"><a href="student_page.html">ไปหน้าเช็คชื่อนักศึกษา</a></+v-btn>
                           </div> 
                           <!-- <div v-for="(t) in teachers">
                             <v-btn v-if="user.email == t.email"><a href="teachers_home.html">Next for Teachers</a></v-btn>
@@ -132,19 +132,18 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="(c) in checkin">
+                          <tr v-for="(c) in answer">
                             <td>{{c.id}}</td>
-                            <td>{{c.class_date}}</td>
+                            <td>{{ formatTimestamp(c.time_date) }}</td> <!-- แปลง timestamp นี้ -->
                             <td>{{c.qiz_send}}</td>
                             <td>{{c.room}}</td>
                             <td>{{c.subject}}</td>
-                            <td>
-                            </td>
                             <td><v-btn @click="deletesed(c)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
-                          </tr>
+                        </tr>
                         </tbody>
                       </table>
                 </v-card-text>
+                
                 <v-card-text class="pa-6" v-if="editmode==='โชว์คำตอบทั้งหมด'">
                     <table width="100%" >
                         <thead>
@@ -196,7 +195,9 @@
                 <p>&copy;  Molbie application project.</p>
             </div>
         </footer>
+        
     </div>
+    
     <script>
         const vuetify = Vuetify.createVuetify();
         const firebaseConfig = {
@@ -224,7 +225,7 @@
               teachers: [],
               user: null,
               ustudent: null,
-              checkin:[],
+              answer:[],
             };
           },
   
@@ -263,20 +264,26 @@
                   });
                   this.quiz = quizlist;
               });
-              db.collection("checkin") .get()
+              db.collection("answer") .get()
               .then((querySnapshot) => {
-                  var checkinlist = [];
+                  var answerlist = [];
                   querySnapshot.forEach((doc) => {
-                    checkinlist.push({ id: doc.id, ...doc.data() });
+                    answerlist.push({ id: doc.id, ...doc.data() });
                   });
-                  this.checkin = checkinlist;
+                  this.answer = answerlist;
               });
+
+              
               
           },
           
   
   
           methods: {
+            formatTimestamp(timestamp) {
+                    const date = new Date(timestamp.seconds * 1000);
+                    return date.toLocaleString();
+              },
             computed: {
                 filteredList() {
                   return this.quiz.filter(post => {
@@ -373,6 +380,7 @@
   
           },
         });
+        
         
         
         app.use(vuetify).mount("#app");
