@@ -106,7 +106,7 @@
                    
     
                     <v-card-actions>
-                        <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
+                        <v-btn @click="google_login()" v-if="!user">เข้าสู่ระบบ</v-btn>
                         <div v-if="user">
                           <v-btn @click="google_logout()" v-if="user" class="btn btn-danger">ออกจากระบบ</v-btn>   
                           <div v-for="(s) in students">
@@ -128,7 +128,7 @@
                             <td>วันเวลา</td>
                             <td>คำตอบ</td>
                             <td>ห้อง</td>
-                            <td>หัวข้อ</td>
+                            <td>รหัสวิชา</td>
                           </tr>
                         </thead>
                         <tbody>
