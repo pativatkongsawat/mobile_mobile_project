@@ -21,11 +21,22 @@
             margin-left: 280px;
             border-radius: 5%;
         }
+        .centered-login {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+        .btn.btn-success {
+          float: right;
+          margin-left: 10px;
+      }
+
         
     </style>
 </head>
   <body>
-    <div id="app">
+    <div id="app" class="centered-login">
       <v-app>
         <v-container>
             <v-card>
@@ -43,21 +54,21 @@
                 </v-card-actions>
 
                 <div  class="pa-2">
-                    รหัสวิชา : SC310006 Mobile and Web Application Development<br>
+                   เข้าสู่ระบบเช็คชื่อ
                    
                 </div>
 
 
 
                 <v-card-actions>
-                    <v-btn @click="google_login()" v-if="!user" class="btn btn-warning"> Login</v-btn>
+                    <v-btn @click="google_login()" v-if="!user" class="btn btn-warning">เข้าสู่ระบบ</v-btn>
                     <div v-if="user">
-                      <v-btn @click="google_logout()" v-if="user" class="btn btn-danger"> Logout</v-btn>   
+                      <v-btn @click="google_logout()" v-if="user" class="btn btn-danger">ออกจากระบบ</v-btn>   
                       <div v-for="(s) in students">
-                        <v-btn v-if="user.email == s.email"><a href="student_page.html" class="btn btn-success">Next for students</a></v-btn>
+                        <v-btn v-if="user.email == s.email"><a href="student_page.html" class="btn btn-success">เข้าสู่หน้าเช็คชื่อ</a></v-btn>
                       </div> 
                       <div v-for="(t) in teachers">
-                        <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">Next for Teachers</a></v-btn>
+                        <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
                       </div>   
                     </div>
                          
@@ -67,7 +78,7 @@
                 <v-card-text class="pa-6">
                     <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
                     <v-text-field v-model="editstd.id" label="รหัส"></v-text-field>
-                    <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว','ด.ช.','ด.ญ','นาง']"></v-combobox>
+                    <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว']"></v-combobox>
                     <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
                     <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
                     <v-text-field v-model="editstd.email" label="E-mail"></v-text-field>

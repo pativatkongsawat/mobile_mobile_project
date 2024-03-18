@@ -17,11 +17,11 @@
     <title>Teachers Page</title>
     <style>
       
-        .btn.btn-success {
-            float: right;
-            margin-left: 10px;
-        }
-        .footer {
+      .btn.btn-success {
+          float: right;
+          margin-left: 10px;
+      }
+      .footer {
         background-color: #333;
         color: #fff;
         padding: 40px 0;
@@ -64,12 +64,12 @@
     .navbar a:hover {
         text-decoration: underline;
     }
-    
 
+    
     </style>
 </head>
 <body>
-    <header class="header">
+      <header class="header">
         <div class="logo">Hello</div>
         <nav class="navbar">
             <ul>
@@ -78,24 +78,21 @@
         </nav>
     </header>
     <div id = "app">
-        
         <v-app>
             <v-container>
                 <v-card>
-                    
                     <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
                       <v-card-actions >
-                        <h4>รายชื่อนักศึกษาทั้งหมด</h4>
                         <template v-if="user">
                           <div class="pa-2">
                               <v-avatar><img :src="user.photoURL" /></v-avatar>
                           </div>
                           <div class="pa-2">
-
                               {{user.displayName}}<br />
                               {{user.email}}<br/>
+                              
                           </div>
-                          
+                          <v-btn @click="google_logout()" v-if="user" class="btn btn-danger"> Logout</v-btn>
                       </template>
                     </v-card-actions>
                   
@@ -132,10 +129,8 @@
                     <v-card-actions>
                         <!--<v-btn @click="readData()">Read Data (get)</v-btn>
                         <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>-->
-                       
-                        <a href="add_data.html" @click="addData()" class="btn btn-success">นักศึกษา</a>
-                        <a href="add_quiz.html" @click="addData()" class="btn btn-success">คําถาม</a>
-                        
+                        <a href="add_data.html" class="btn btn-success">นักศึกษา</a>
+                        <a href="add_quiz.html" class="btn btn-success">คําถาม</a>
                     </v-card-actions>
                     
                    
@@ -143,7 +138,7 @@
                     <v-card-actions>
                         <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
                         <div v-if="user">
-                          <v-btn @click="google_logout()" v-if="user" class="btn btn-danger"> Logout</v-btn>   
+                             
                           <div v-for="(s) in students">
                             <v-btn v-if="user.email == s.email"><a href="students.html">Next for students</a></v-btn>
                           </div> 
@@ -155,17 +150,94 @@
                     </v-card-actions>
                 </v-card>
                 
-                
-               
-               
+                <v-card-text class="pa-6" v-if="editmode==='เช็คคำตอบ'">
+                    <table width="100%" >
+                        <thead>
+                          <tr>
+                            <td>รหัสนักศึกษา</td>
+                            <td>วันเวลา</td>
+                            <td>คำตอบ</td>
+                            <td>ห้อง</td>
+                            <td>หัวข้อ</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(c) in checkin">
+                            <td>{{c.id}}</td>
+                            <td>{{c.class_date}}</td>
+                            <td>{{c.qiz_send}}</td>
+                            <td>{{c.room}}</td>
+                            <td>{{c.subject}}</td>
+                            <td>
+                            </td>
+                            <td><v-btn @click="deletesed(c)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </v-card-text>
+                <v-card-text class="pa-6" v-if="editmode==='โชว์คำตอบทั้งหมด'">
+                    <table width="100%" >
+                        <thead>
+                          <tr>
+                            <td>ผู้โพส</td>
+                            <td>หัวข้อ</td>
+                            <td>แก้ไข</td>
+                            <td>ลบ</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(q) in quiz">
+                            <td>{{q.quiz_cus}}</td>
+                            <td>{{q.quiz_name}}</td>
+                            <td>
+                                <v-btn @click="editqz(q)"><v-icon icon="mdi-account-edit"></v-icon></v-btn>
+                            </td>
+                            <td><v-btn @click="deleteqiz(q)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
+                          </tr>
+                        </tbody>
+                        <v-card-actions>
+                            <v-btn @click="editmode=0" >Cancel</v-btn>
+                       </v-card-actions>
+                      </table>
+                </v-card-text>
+                <!--แก้ไขข้อมูล - เพิ่มข้อมูล -->
+                <v-card v-if="editmode==='เพิ่มนักเรียน'">
+                    <v-card-text class="pa-6">
+                        <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
+                        <v-text-field v-model="editstd.id" label="รหัส"></v-text-field>
+                        <v-combobox v-model="editstd.title" label="คำนำหน้า" :items="['นาย','นางสาว','ด.ช.','ด.ญ','นาง']"></v-combobox>
+                        <v-text-field v-model="editstd.fname" label="ชื่อ"></v-text-field>
+                        <v-text-field v-model="editstd.lname" label="นามสกุล"></v-text-field>
+                        <v-text-field v-model="editstd.email" label="E-mail"></v-text-field>
+                        <v-text-field v-model="editstd.section" label="Section"></v-text-field>
+                   </v-card-text>
+                   <v-card-actions>
+                        <v-btn @click="savedata()" class="btn btn-success" >Save</v-btn>
+                        <v-btn @click="editmode=0" class="btn btn-danger" >Cancel</v-btn>
+                   </v-card-actions>
+                 </v-card>
+
+                 <v-card v-if="editmode==='เพิ่มคำถาม'">
+                    <v-card-text class="pa-6">
+                        <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
+                        <v-text-field v-model="editquiz.id" label="รหัส" value="Auto-ID"></v-text-field>
+                        <v-text-field v-model="editquiz.quiz_name" label="คำถาม"></v-text-field>
+                        <v-text-field v-model="editquiz.quiz_cus" label="โพสโดย"></v-text-field>
+                   </v-card-text>
+                   <v-card-actions>
+    
+                        <v-btn @click="saveqiz()"class="btn btn-success">บันทึก</v-btn>
+                        <v-btn @click="editmode=0"class="btn btn-danger">ยกเลิกุ</v-btn>
+                   </v-card-actions>
+                 </v-card>
 
                           
-                
+              <div class="pa-6 text-center">{{footer}}</div>
             </v-container>        
           </v-app>
           <footer class="footer">
             <div class="container">
-                <p>&copy;  Molbie application project.</p>
+                <p>&copy; Molbie application project.</p>
             </div>
         </footer>
     </div>
@@ -179,14 +251,14 @@
             messagingSenderId: "542022533866",
             appId: "1:542022533866:web:ef1919a76b800013c4cd93",
             measurementId: "G-XB5BFM7SM6"
-            };
+          };
           firebase.initializeApp(firebaseConfig);      
           const db = firebase.firestore();
   
         const app = Vue.createApp({
           data() {
             return {
-              title: "Web/Mobile  Application : เช็คชื่อนักศึกษา",
+              title: "Web/Mobile  Application : เช็คชื่อนักศึกษา และ ถาม/ตอบ",
               footer: "",
               students: [],
               editstd: {},
@@ -323,7 +395,7 @@
             google_logout(){
               if(confirm("Are you sure?")){
                 firebase.auth().signOut();
-                window.location.href = 'project.html';
+                window.location.href = 'index.html';
               }
             },
             getstudent(email){
