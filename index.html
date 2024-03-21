@@ -17,37 +17,11 @@
     <style>
       * {
         box-sizing: border-box;
-<<<<<<< HEAD
       }
       body{
-        font-family:  serif;
-        margin:0;
-        padding:0;
-        height:100%;
-        width: 100vw;
+        font-family: "serif";
+      }
 
-      }
-      #app{
-        min-height:100%;
-        position:relative;
-        
-      }
-      .v-card-actions{
-        margin-bottom: 0px;
-        
-      }
-=======
-      }
-      body{
-        font-family:  serif;
-        
-        
-      }
-      .v-card-actions{
-        margin-bottom: 0px;
-        
-      }
->>>>>>> 28fc812c306be7822943af6ad936fb91a06a6864
       .btn.btn-success {
         float: right;
         margin-left: 10px;
@@ -77,58 +51,35 @@
         display: block;
        
       }
-      
-      .navbar-brand{
-        font-size: 20px;
-        font-weight: bold;
-        color: rgb(63, 63, 62);
-        margin: 0px;
-<<<<<<< HEAD
-        margin-bottom: 0%;
-=======
-        
->>>>>>> 28fc812c306be7822943af6ad936fb91a06a6864
-        
-      }
-      .std{
-        margin-top: 0px;
-        margin-top: 20%;
-      }
       .footer {
         margin-top: 0%;
-<<<<<<< HEAD
         margin-bottom: 0;
         background-color: #e3f2fd;
         color: black;
         padding-top: 10px;
         text-align: center;
-        position:absolute;
         bottom:0;
         width:100%;
       }
-
-=======
-        background-color: #e3f2fd;
-        color: black;
-        padding: 20px 0;
-        text-align: center;
-        width: 100vw;
+      .navbar-brand{
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(63, 63, 62);
+        margin: 0px;
+        margin-bottom: 0%;
+        
       }
-
-      .footer p {
-        margin: 0;
+      .v-btn.bt{
+        margin-top: 20%;
+        margin-bottom: 0%;
       }
-     
->>>>>>> 28fc812c306be7822943af6ad936fb91a06a6864
-
     </style>
 </head>
   <body>
-    
-                  
-    <div id="app" class="centered-login ">
-<<<<<<< HEAD
-      <v-app>  
+    <div id="app" class="centered-login">
+      <v-app>
+        
+        <v-container>  
         <v-container class="con " >
             <div class="navbar" style="background-color: #e3f2fd;">
                 <div class="container-fluid">
@@ -137,78 +88,37 @@
                         <v-btn @click="google_login()" v-if="!user"  class="btn login-button"  flat text>Login</v-btn>
                       <div v-if="user">
                         <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
-                        <v-avatar><img :src="user.photoURL" /></v-avatar>
-                      </div>
+                        <v-avatar><img :src="user.photoURL" /></v-avatar>                    
+                      </div>                 
                     </form>
                 </div>
             </div>
-=======
-      <v-app>
-        
-        <v-container class="con ">
-  
-                <div class="navbar" style="background-color: #e3f2fd;">
-                  <div class="container-fluid">
-                    
-                    <a class="navbar-brand mb-0 h1">Student Check</a>
-                    <form class="d-flex" role="login">
-                          <v-btn @click="google_login()" v-if="!user"  class="btn login-button"  flat text>Login</v-btn>
-                    <div v-if="user">
-                          <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
-                          <v-avatar><img :src="user.photoURL" /></v-avatar>
-                     </div>
-                    </form>
-                  </div>
-                </div>
-                </nav>
->>>>>>> 28fc812c306be7822943af6ad936fb91a06a6864
                 
             <div id="app" class="centered-login">
                   <v-app>
-<<<<<<< HEAD
-                  <v-btn @click="google_login()" v-if="user" class="std" flat text><a href="student_page.html"  class="btn btn-outline-secondary">เข้าสู่หน้าเช็คชื่อ</a></v-btn>
+                    <v-btn @click="google_login()" v-if="user" class="bt" flat text><a href="student_page.html" class="btn btn-outline-secondary">ไปหน้าเช็คชื่อ</a></v-btn>
                 </v-app>
             </div>
-
-          <v-card-actions>
-            <div v-for="(t) in teachers">
-                <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
-            </div> 
-        </v-container>   
-=======
-                    <v-btn @click="google_login()" v-if="user" class="std" flat text><a href="student_page.html"  class="btn btn-outline-secondary">เข้าสู่หน้าเช็คชื่อ</a></v-btn>
-                </v-app>
-            </div>
-              <v-card-actions>
+          </v-container>   
+             <v-card-actions>
                 <div v-for="(t) in teachers">
                   <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
-                </div> 
-                </v-container>   
+                </div>   
               </div>
-              </div>
-            <footer class="footer" >
-              <div class="container">
-                <p>&copy; Molbie application project.</p>
-              </div>
-            </footer>
-
-          </v-container>   
-             
                   
           </v-card-actions>
+          
+          
+          <footer class="footer">
+            <div class="container">
+                <p>&copy; Molbie application project.</p>
+            </div>
+        </footer>
+      </v-app>
+        
+        
 
-      </v-app>
- 
->>>>>>> 28fc812c306be7822943af6ad936fb91a06a6864
     </div>
-                      
-            <footer class="footer" >
-                <div class="container">
-                  <p>&copy; Molbie application project.</p>
-                </div>
-            </footer>
-      </v-app>
- 
     
  
     <script>
