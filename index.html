@@ -70,7 +70,7 @@
             </div>
           </v-container>   
              <v-card-actions>
-              <v-btn @click="google_login()" v-if="user"><a href="student_page.html" class="btn btn-bs-dark-rgb">ไปหน้าเช็คชื่อ</a></v-btn>
+              <v-btn  v-if="user"><a href="student_page.html" class="btn btn-bs-dark-rgb">ไปหน้าเช็คชื่อ</a></v-btn>
                
                 <div v-for="(t) in teachers">
                   !--<v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
