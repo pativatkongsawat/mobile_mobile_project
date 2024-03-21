@@ -15,8 +15,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body{
         font-family:  serif;
+        
+        
+      }
+      .v-card-actions{
+        margin-bottom: 0px;
         
       }
       .btn.btn-success {
@@ -28,20 +36,18 @@
         background-color: #89d8ef; 
         color: #fff; 
       }
-      .logout-button {
-        
+      .logout-button { 
         color: grey; 
         padding: auto;
         margin-right: 5px;
+        
       }
 
-      .btn.btn-bs-dark-rgb{
+      .check{
         background-color: rgb(157, 157, 157);
         color: white;
-        position: fixed; 
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%); 
+        text-align: center; 
+        
       }
       .img{
         max-width: 100%;
@@ -50,19 +56,42 @@
         display: block;
        
       }
+      
       .navbar-brand{
         font-size: 20px;
         font-weight: bold;
         color: rgb(63, 63, 62);
+        margin: 0px;
+        
+        
       }
-      
+      .std{
+        margin-top: 0px;
+        margin-top: 20%;
+      }
+      .footer {
+        margin-top: 0%;
+        background-color: #e3f2fd;
+        color: black;
+        padding: 20px 0;
+        text-align: center;
+        width: 100vw;
+      }
+
+      .footer p {
+        margin: 0;
+      }
+     
+
     </style>
 </head>
   <body>
-    <div id="app" class="centered-login">
+    
+                  
+    <div id="app" class="centered-login ">
       <v-app>
         
-        <v-container>
+        <v-container class="con ">
   
                 <div class="navbar" style="background-color: #e3f2fd;">
                   <div class="container-fluid">
@@ -77,53 +106,33 @@
                     </form>
                   </div>
                 </div>
+                </nav>
                 
                 <div id="app" class="centered-login">
                   <v-app>
-                    
+                    <v-btn @click="google_login()" v-if="user" class="std" flat text><a href="student_page.html"  class="btn btn-outline-secondary">เข้าสู่หน้าเช็คชื่อ</a></v-btn>
                 </v-app>
             </div>
-          </v-container>   
-             <v-card-actions>
-              <v-btn @click="google_login()" v-if="user"><a href="student_page.html" class="btn btn-bs-dark-rgb">ไปหน้าเช็คชื่อ</a></v-btn>
-               
+              <v-card-actions>
                 <div v-for="(t) in teachers">
                   <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
-                </div>   
+                </div> 
+                </v-container>   
               </div>
+              </div>
+            <footer class="footer" >
+              <div class="container">
+                <p>&copy; Molbie application project.</p>
+              </div>
+            </footer>
+
+          </v-container>   
+             
                   
           </v-card-actions>
-          
-          
 
       </v-app>
-        
-          
-                 
-            
-        
-
-        <v-card-text class="pa-6">
-          <table width="100%">
-              <thead>
-                <tr>
-                  <!-- <td>email</td>
-                  <td>name</td> -->
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(tt) in teachers">
-                  <!-- <td>{{tt.email}}</td>
-                  <td>{{tt.name}}</td> -->
-                 <!-- ทดสอบ if <td v-if = "t.email == ''"> <v-btn @click="readDatatc">Read Data (get)</v-btn></td>-->
-                </tr>
-              </tbody>
-          </table>
-      </v-card-text>
-      <v-card-actions>
-        <!-- <v-btn @click="readDatatc">Read Data (get)</v-btn> -->
-    </v-card-actions>
-
+ 
     </div>
     
  
