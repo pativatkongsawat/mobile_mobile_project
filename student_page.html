@@ -79,7 +79,7 @@
             </form>
           </div>
         </nav>
-        <v-card>
+        <div>
 
           <v-card-actions>
             <template v-if="user">
@@ -91,11 +91,11 @@
             </template>
           </v-card-actions>
 
-          <v-card-title class="cardTitle">{{title}}</v-card-title>
+     
 
 
 
-          <v-card v-if="editmode==='แบบฟอร์ม'">
+          <div v-if="editmode==='แบบฟอร์ม'">
             <v-card-text class="pa-6">
               <v-card-title class="bg-grey">{{editmode}}</v-card-title>
               <!-- Your input fields and other elements -->
@@ -111,7 +111,7 @@
               <v-btn @click="saveqiz_back()">บันทึก</v-btn>
               <v-btn @click="editmode=0">ยกเลิก</v-btn>
             </v-card-actions>
-          </v-card>
+          </div>
 
 
 
@@ -121,12 +121,13 @@
             <a type="button" class="btn btn-danger" href="index.html">กลับ</a>
           </v-card-actions>
 
-        </v-card>
+        </div>
 
 
 
 
       </v-container>
+      
 
     </v-app>
     <footer class="footer">
