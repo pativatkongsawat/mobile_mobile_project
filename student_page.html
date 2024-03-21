@@ -24,13 +24,33 @@
             float: right;
             margin-left: 10px;
     }
+    .check-button {
+            background-color: #828487; /* สีของปุ่ม */
+            color: #fff; /* สีข้อความของปุ่ม */
+            margin-right: 850px;
+          }
+
+          /* กำหนดสีของปุ่ม "กลับ" */
+          .back-button {
+            background-color: #5ba7d6; /* สีของปุ่ม */
+            color: #fff; /* สีข้อความของปุ่ม */
+            width: 100px; /* กำหนดความกว้างของปุ่ม */
+            height: 40px; /* กำหนดความสูงของปุ่ม */
+          }
+    .kk{
+        text-decoration: none;
+        margin-left: 18px;
+        margin-top: 20px;
+        
+    }
     .btn.btn-danger {
+           
             float: right;
             margin-left: 10px;
     }
 
     .footer {
-      background-color: #333;
+      background-color: #383636;
       color: #fff;
       padding: 40px 0;
       text-align: center;
@@ -43,11 +63,12 @@
     }
 
     .cardTitle {
-      background-color: rgb(210, 210, 243);
+      background-color: rgb(255, 255, 255);
       margin-top: auto;
     }
-
+  #footer
     .container {
+      
       display: flex;
       justify-content: flex-end;
     }
@@ -59,6 +80,8 @@
     .button-container {
       display: flex;
       justify-content: center;
+      margin-top: 0px;
+    
     }
   </style>
 </head>
@@ -79,27 +102,30 @@
             </form>
           </div>
         </nav>
-        <div>
-
+        <v-card>
           <v-card-actions>
             <template v-if="user">
+              <div class="kk">
+                <a >ระบบเช็คชื่อสำหรับนักเรียน นักศึกษา</a>
+                </div>
               <div class="pa-1">
                 ยินดีต้อนรับคุณ :
                 {{user.displayName}}<br />
                 {{user.email}}<br />
               </div>
             </template>
+            
           </v-card-actions>
 
-     
+          <v-card-title class="cardTitle">{{title}}</v-card-title>
 
 
 
-          <div v-if="editmode==='แบบฟอร์ม'">
+          <v-card v-if="editmode==='แบบฟอร์ม'">
             <v-card-text class="pa-6">
               <v-card-title class="bg-grey">{{editmode}}</v-card-title>
               <!-- Your input fields and other elements -->
-              <v-text-field v-model="editcheckin.id" label="รหัส"></v-text-field>
+              <v-text-field v-model="editcheckin.id" label="รหัสนักศึกษา"></v-text-field>
               <v-text-field type="datetime-local" v-model="editcheckin.class_date" label="เวลา"></v-text-field>
               <v-text-field v-model="editcheckin.room" label="ห้อง"></v-text-field>
               <div v-for="(q) in quiz" class="pa-2">
@@ -111,23 +137,20 @@
               <v-btn @click="saveqiz_back()">บันทึก</v-btn>
               <v-btn @click="editmode=0">ยกเลิก</v-btn>
             </v-card-actions>
-          </div>
+          </v-card>
 
 
 
           <v-card-actions class="button-container">
-
-            <v-btn @click="sendob()" class="btn btn-primary btn-sm">คลิกเพื่อเช็คชื่อของคุณ</v-btn>
-            <a type="button" class="btn btn-danger" href="index.html">กลับ</a>
+            <v-btn @click="sendob()" class="btn btn-light btn-sm check-button">คลิกเพื่อเช็คชื่อของคุณ</v-btn>
+            <v-btn @click="sendob()" class="btn back-button" href="index.html">ย้อนกลับ</v-btn>
           </v-card-actions>
-
-        </div>
+          
 
 
 
 
       </v-container>
-      
 
     </v-app>
     <footer class="footer">
@@ -155,7 +178,6 @@
     const app = Vue.createApp({
       data() {
         return {
-          title: "ตอบคําถามพร้อมเช็คชื่อนักศึกษา",
           footer: "",
           students: [],
           editstd: {},
