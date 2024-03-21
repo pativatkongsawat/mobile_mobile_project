@@ -128,18 +128,20 @@
                             <td>วันเวลา</td>
                             <td>คำตอบ</td>
                             <td>ห้อง</td>
-                            <td>รหัสวิชา</td>
+                            <td>รหัสวิชา</td
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="(c) in answer">
+                          <tr v-for="(c) in checkin">
                             <td>{{c.id}}</td>
-                            <td>{{ formatTimestamp(c.time_date) }}</td> <!-- แปลง timestamp นี้ -->
+                            ><td>{{(c.class_date) }}</td>
                             <td>{{c.qiz_send}}</td>
                             <td>{{c.room}}</td>
                             <td>{{c.subject}}</td>
+                            <td>
+                            </td>
                             <td><v-btn @click="deletesed(c)"><v-icon icon="mdi-account-remove"></v-icon></v-btn></td>
-                        </tr>
+                          </tr>
                         </tbody>
                       </table>
                 </v-card-text>
@@ -225,7 +227,7 @@
               teachers: [],
               user: null,
               ustudent: null,
-              answer:[],
+              checkin:[],
             };
           },
   
@@ -264,13 +266,13 @@
                   });
                   this.quiz = quizlist;
               });
-              db.collection("answer") .get()
+              db.collection("checkin") .get()
               .then((querySnapshot) => {
-                  var answerlist = [];
+                  var checkinlist = [];
                   querySnapshot.forEach((doc) => {
-                    answerlist.push({ id: doc.id, ...doc.data() });
+                    checkinlist.push({ id: doc.id, ...doc.data() });
                   });
-                  this.answer = answerlist;
+                  this.checkin = checkinlist;
               });
 
               
