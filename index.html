@@ -16,19 +16,24 @@
 
     <style>
       body{
-        font-family: "Kanit";
+        font-family:  serif;
+        
       }
-
       .btn.btn-success {
         float: right;
         margin-left: 10px;
           
       }
       .login-button {
-        background-color: #89d8ef; /* สีของปุ่ม Login */
-        color: #fff; /* สีข้อความของปุ่ม Login */
+        background-color: #89d8ef; 
+        color: #fff; 
       }
-   
+      .logout-button {
+        
+        color: grey; 
+        padding: auto;
+        margin-right: 5px;
+      }
 
       .btn.btn-bs-dark-rgb{
         background-color: rgb(157, 157, 157);
@@ -45,7 +50,11 @@
         display: block;
        
       }
-      
+      .navbar-brand{
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(63, 63, 62);
+      }
       
     </style>
 </head>
@@ -54,20 +63,20 @@
       <v-app>
         
         <v-container>
-          
-                <nav class="navbar bg-body-tertiary">
+  
+                <div class="navbar" style="background-color: #e3f2fd;">
                   <div class="container-fluid">
-
+                    
                     <a class="navbar-brand mb-0 h1">Student Check</a>
                     <form class="d-flex" role="login">
                           <v-btn @click="google_login()" v-if="!user"  class="btn login-button"  flat text>Login</v-btn>
                     <div v-if="user">
-                          <v-btn @click="google_logout()" v-if="user" flat text>Logout</v-btn>    
+                          <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
                           <v-avatar><img :src="user.photoURL" /></v-avatar>
                      </div>
                     </form>
                   </div>
-                </nav>
+                </div>
                 
                 <div id="app" class="centered-login">
                   <v-app>
@@ -79,7 +88,7 @@
               <v-btn @click="google_login()" v-if="user"><a href="student_page.html" class="btn btn-bs-dark-rgb">ไปหน้าเช็คชื่อ</a></v-btn>
                
                 <div v-for="(t) in teachers">
-                  !--<v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
+                  <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
                 </div>   
               </div>
                   
