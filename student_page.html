@@ -46,6 +46,12 @@
       width: 100px;
       height: 40px;
     }
+      .bg-tt {
+        border: ridge 1.5px;
+    }
+    .bg-gg {
+      border: ridge 1.5px;
+    }
 
     .kk {
       text-decoration: none;
@@ -171,8 +177,8 @@
               จงเติมคำตอบลงช่องว่าง: <v-text-field v-model="editcheckin.qiz_send" label="คำตอบ"></v-text-field>
             </v-card-text>
             <v-card-actions class="button-container">
-              <v-btn @click="saveqiz_back()" class="bg-success">บันทึก</v-btn>
-              <v-btn @click="editmode=0" class="bg-danger">ยกเลิก</v-btn>
+              <v-btn @click="saveqiz_back()" class="bg-gg">บันทึก</v-btn>
+              <v-btn @click="editmode=0" class="bg-tt">ยกเลิก</v-btn>
             </v-card-actions>
           </v-card>
 
