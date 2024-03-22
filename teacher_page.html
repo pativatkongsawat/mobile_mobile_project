@@ -39,17 +39,17 @@
         margin-left: 10px;
       }
       
-      .footer {
-        margin-top: 0%;
-        margin-bottom: 0;
-        background-color: #e3f2fd;
-        color: black;
+      .navbar-dark.bg-dark{
+        color: rgb(255, 255, 255);
         padding-top: 10px;
         text-align: center;
         bottom:0;
         width:100%;
       }
-
+      .login-button {
+        background-color: #89d8ef; 
+        color: #fff; 
+      }
       .logout-button { 
         color: grey; 
         padding: auto;
@@ -71,33 +71,56 @@
         margin-bottom: 0%;
         
       }
-      
+      .navbar-dark.bg-dark{
+        margin-top: 0%;
+        margin-bottom: 0; 
+        color: rgb(255, 255, 255);
+        padding: 8px;
+        text-align: center;
+        bottom:0;
+        width:100%;
+      }
 
     </style>
   </head>
   <body>
-    <div id="app" class="centered-login ">
-      <v-app>  
-        <v-container class="con " >
-            <div class="navbar" style="background-color: #e3f2fd;">
-                <div class="container-fluid">
-                  <a class="navbar-brand mb-0 h1">Student Check</a>
-                    <form class="d-flex" role="login">
-                        <v-btn @click="google_login()" v-if="!user"  class="btn login-button"  flat text>Login</v-btn>
-                      <div v-if="user">
-                        <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
-                        <v-avatar><img :src="user.photoURL" /></v-avatar>
-                      </div>
-                    </form>
+    
+    <div id="app" class="centered-login">
+      <v-app>
+        
+        <v-container fluid style="padding: 0;">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                <div class="container">
+                    <img src="logocs.png" alt="..." height="36">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <form class="d-flex" role="login">
+                            <a @click="google_login()" v-if="!user" class="nav-link active" aria-current="page" href="#">Login</a>
+                        <div v-if="user">
+                            <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
+                            <v-avatar><img :src="user.photoURL" /></v-avatar>
+                        
+                        </form>
+                        
+                        </li>
+                        
+                       
+                    </ul>
+                    </div>
                 </div>
-            </div>
+                </nav>
     <div id="app">
       <v-app>
-            <v-container>
+            <v-container v-if="user">
                 <v-card>
-                    <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
+                    <v-card-title class="bg-light">{{title}}</v-card-title>
                       
-            <v-card-text class="pa-6">
+            <v-card-text class="pa-6" v-if="user">
               <table width="100%">
                 <thead>
                   <tr>
@@ -136,12 +159,11 @@
             <v-card-actions>
               <!--<v-btn @click="readData()">Read Data (get)</v-btn>
                         <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>-->
-              <a href="add_data.html" class="btn btn-success">นักศึกษา</a>
+              <a href="add_data.html" class="btn btn-info">นักศึกษา</a>
               <a href="add_quiz.html" class="btn btn-success">คําถาม</a>
             </v-card-actions>
 
             <v-card-actions>
-              <v-btn @click="google_login()" v-if="!user"> Login</v-btn>
               <div v-if="user">
                 <div v-for="(s) in students">
                   <v-btn v-if="user.email == s.email"
@@ -155,7 +177,7 @@
             </v-card-actions>
           </v-card>
 
-          <v-card-text class="pa-6" v-if="editmode==='เช็คคำตอบ'">
+          <v-card-text class="pa-6" v-if="editmode==='เช็คคำตอบ'" >
             <table width="100%">
               <thead>
                 <tr>
@@ -270,11 +292,11 @@
           <div class="pa-6 text-center">{{footer}}</div>
         </v-container>
       </v-app>
-      <footer class="footer">
-        <div class="container">
-          <p>&copy; Molbie application project.</p>
-        </div>
-      </footer>
+      <footer class="navbar-dark bg-dark">
+            <div class="container">
+                <p>&copy; Molbie application project.</p>
+            </div>
+        </footer>
     </div>
     <script>
       const vuetify = Vuetify.createVuetify();
