@@ -25,17 +25,19 @@
         margin-left: 10px;
       }
       
-      .footer {
+      .navbar-dark.bg-dark{
         margin-top: 0%;
-        margin-bottom: 0;
-        background-color: #e3f2fd;
-        color: black;
-        padding-top: 10px;
+        margin-bottom: 0; 
+        color: rgb(255, 255, 255);
+        padding: 8px;
         text-align: center;
         bottom:0;
         width:100%;
       }
-
+      .login-button {
+        
+        color: #fff; 
+      }
       .logout-button { 
         color: grey; 
         padding: auto;
@@ -52,7 +54,7 @@
       .navbar-brand{
         font-size: 20px;
         font-weight: bold;
-        color: rgb(63, 63, 62);
+        color: rgb(255, 255, 255);
         margin: 0px;
         margin-bottom: 0%;
         
@@ -62,27 +64,38 @@
     
 </head>
 <body>
-   <div id="app" class="centered-login ">
-      <v-app>  
-        <v-container class="con " >
-            <div class="navbar" style="background-color: #e3f2fd;">
-                <div class="container-fluid">
-                  <a class="navbar-brand mb-0 h1">Student Check</a>
-                    <form class="d-flex" role="login">
-                        <v-btn @click="google_login()" v-if="!user"  class="btn login-button"  flat text>Login</v-btn>
-                      <div v-if="user">
-                        <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
-                        <v-avatar><img :src="user.photoURL" /></v-avatar>
-                        <div v-for="(s) in students">
-                            <v-btn v-if="user.email == s.email"><a href="student_page.html">ไปหน้าเช็คชื่อนักศึกษา</a></+v-btn>
-                        </div> 
-                      </div>
-                    </form>
+<div id="app" class="centered-login">
+      <v-app>
+        
+        <v-container fluid style="padding: 0;">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                <div class="container">
+                    <img src="logocs.png" alt="..." height="36">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <form class="d-flex" role="login">
+                            <a @click="google_login()" v-if="!user" class="nav-link active" aria-current="page" href="#">Login</a>
+                        <div v-if="user">
+                            <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
+                            <v-avatar><img :src="user.photoURL" /></v-avatar>
+                        
+                        </form>
+                        
+                        </li>
+                        
+                       
+                    </ul>
+                    </div>
                 </div>
-            </div>
+                </nav>
     <div id = "app">
         <v-app>
-            <v-container>
+            <v-container v-if="user">
                 <v-card>
                     <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
  
@@ -168,9 +181,9 @@
                 
             </v-container>        
           </v-app>
-          <footer class="footer">
+          <footer class="navbar-dark bg-dark">
             <div class="container">
-                <p>&copy;  Molbie application project.</p>
+                <p>&copy; Molbie application project.</p>
             </div>
         </footer>
         
