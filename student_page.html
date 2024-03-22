@@ -20,44 +20,52 @@
     crossorigin="anonymous"></script>
   <title>Students Home Page</title>
   <style>
-    body{
+    footer .container {
+      display: flex;
+      justify-content: center;
+    }
+    body {
       font-family: serif;
-        
-      }
+
+    }
+
     .btn.btn-primary {
       float: right;
       margin-left: 10px;
     }
+
     .check-button {
-      background-color: grey; 
-      color: #fff; 
+      background-color: grey;
+      color: #fff;
       margin-right: 850px;
     }
+
     .back-button {
-      background-color: #5ba7d6; 
-      color: #fff; 
-      width: 100px; 
-      height: 40px; 
-          }
-    .kk{
+      background-color: #5ba7d6;
+      color: #fff;
+      width: 100px;
+      height: 40px;
+    }
+
+    .kk {
       text-decoration: none;
       margin-left: 18px;
       margin-top: 20px;
       font-size: 2.5vw;
     }
-    
+
 
     .navbar-dark.bg-dark {
       justify-content: center;
-      display:flex ;
-        margin-top: 0%;
-        margin-bottom: 0; 
-        color: rgb(255, 255, 255);
-        padding: 8px;
-        text-align: center;
-        bottom:0;
-        width:100%;
-        
+      display: flex;
+      margin-top: 0%;
+      margin-bottom: 0;
+      color: rgb(255, 255, 255);
+      padding: 8px;
+      text-align: center;
+      bottom: 0;
+      width: 100%;
+
     }
 
 
@@ -65,8 +73,9 @@
       background-color: rgb(255, 255, 255);
       margin-top: auto;
     }
+
     .container {
-      
+
       display: flex;
       justify-content: flex-end;
     }
@@ -75,69 +84,74 @@
       font-size: 10px;
       margin-left: auto;
     }
+
     .button-container {
       display: flex;
       justify-content: center;
       margin-top: 0px;
-      margin-bottom: 2vh; 
-    
+      margin-bottom: 2vh;
+
     }
+
     .logout-button {
-        background-color: none; 
-        color: #757373; 
-      }
-      .navbar-brand{
-        font-size: 20px;
-        font-weight: bold;
-        color: rgb(63, 63, 62);
-      }
-      
+      background-color: none;
+      color: #757373;
+    }
+
+    .navbar-brand {
+      font-size: 20px;
+      font-weight: bold;
+      color: rgb(63, 63, 62);
+    }
   </style>
 </head>
 
 <body>
   <div id="app" class="centered-login">
-      <v-app>
-        
-        <v-container fluid style="padding: 0;">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-                <div class="container">
-                    <img src="logocs.png" alt="..." height="36">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <form class="d-flex" role="login">
-                            <a @click="google_login()" v-if="!user" class="nav-link active" aria-current="page" href="#">Login</a>
-                        <div v-if="user">
-                            <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
-                            <v-avatar><img :src="user.photoURL" /></v-avatar>
-                        
-                        </form>
-                        
-                        </li>
-                        
-                       
-                    </ul>
-                    </div>
-                </div>
-                </nav>
+    <v-app>
+
+      <v-container fluid style="padding: 0;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+          <div class="container">
+            <img src="logocs.png" alt="..." height="36">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <form class="d-flex" role="login">
+                    <a @click="google_login()" v-if="!user" class="nav-link active" aria-current="page"
+                      href="#">Login</a>
+                    <div v-if="user">
+                      <v-btn @click="google_logout()" v-if="user" class="btn logout-button" flat text>Logout</v-btn>
+                      <v-avatar><img :src="user.photoURL" /></v-avatar>
+
+                  </form>
+
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+        </nav>
         <v-card>
           <v-card-actions>
             <template v-if="user">
               <div class="kk">
-                <a >ระบบเช็คชื่อสำหรับนักเรียน นักศึกษา</a>
-                </div>
+                <a>ระบบเช็คชื่อสำหรับนักเรียน นักศึกษา</a>
+              </div>
               <div class="pa-1">
                 ยินดีต้อนรับคุณ :
                 {{user.displayName}}<br />
                 {{user.email}}<br />
               </div>
             </template>
-            
+
           </v-card-actions>
 
           <v-card-title class="cardTitle">{{title}}</v-card-title>
@@ -168,19 +182,19 @@
             <v-btn @click="sendob()" class="bg-success-subtle">คลิกเพื่อเช็คชื่อของคุณ</v-btn>
             <v-btn @click="sendob()" class="btn back-button " href="index.html">ย้อนกลับ</v-btn>
           </v-card-actions>
-          
 
 
-         </v-app>
-            <footer class="navbar-dark bg-dark">
-              <div class="container">
-              <p>&copy; Molbie application project.</p>
-              </div>
-            </footer>
 
-      </v-container> 
+    </v-app>
+    <footer class="navbar-dark bg-dark">
+      <div class="container text-center">
+        <p>&copy; Molbie application project.</p>
+      </div>
+    </footer>
 
-    
+    </v-container>
+
+
 
   </div>
   <script>
@@ -336,7 +350,6 @@
               }
             );
         },
-
 
 
 
