@@ -19,7 +19,7 @@
         box-sizing: border-box;
       }
       body{
-        font-family: "serif";
+        font-family: serif;
       }
 
       .btn.btn-success {
@@ -51,12 +51,11 @@
         display: block;
        
       }
-      .footer {
+      .navbar-dark.bg-dark{
         margin-top: 0%;
-        margin-bottom: 0;
-        background-color: #e3f2fd;
-        color: black;
-        padding-top: 10px;
+        margin-bottom: 0; 
+        color: rgb(255, 255, 255);
+        padding: 8px;
         text-align: center;
         bottom:0;
         width:100%;
@@ -76,40 +75,54 @@
     </style>
 </head>
   <body>
+    
+
     <div id="app" class="centered-login">
       <v-app>
         
-        <v-container>  
-        <v-container class="con " >
-            <div class="navbar" style="background-color: #e3f2fd;">
-                <div class="container-fluid">
-                  <a class="navbar-brand mb-0 h1">Student Check</a>
-                    <form class="d-flex" role="login">
-                        <v-btn @click="google_login()" v-if="!user"  class="btn login-button"  flat text>Login</v-btn>
-                      <div v-if="user">
-                        <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
-                        <v-avatar><img :src="user.photoURL" /></v-avatar>                    
-                      </div>                 
-                    </form>
+        <v-container fluid style="padding: 0;">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                <div class="container">
+                    <img src="logocs.png" alt="..." height="36">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <form class="d-flex" role="login">
+                            <a @click="google_login()" v-if="!user" class="nav-link active" aria-current="page" href="#">Login</a>
+                        <div v-if="user">
+                            <v-btn @click="google_logout()" v-if="user" class="btn logout-button"flat text>Logout</v-btn>    
+                            <v-avatar><img :src="user.photoURL" /></v-avatar>
+                        
+                        </form>
+                        
+                        </li>
+                        
+                       
+                    </ul>
+                    </div>
                 </div>
-            </div>
-                
-            <div id="app" class="centered-login">
+                </nav>
+                <div class="container">
+                    <h1 class="mt-4">ระบบเช็คชื่อสำหรับนักเรียน นักศึกษา</h1>
+                </div>
+                   <div id="app" class="centered-login">
                   <v-app>
                     <v-btn @click="google_login()" v-if="user" class="bt" flat text><a href="student_page.html" class="btn btn-outline-secondary">ไปหน้าเช็คชื่อ</a></v-btn>
                 </v-app>
+                
+            </div>   
             </div>
-          </v-container>   
-             <v-card-actions>
-                <div v-for="(t) in teachers">
-                  <v-btn v-if="user.email == t.email"><a href="teacher_page.html" class="btn btn-primary">เข้าสู่หน้าเเอดมิน</a></v-btn>
-                </div>   
-              </div>
-                  
-          </v-card-actions>
+            </div>
+            
+                
           
           
-          <footer class="footer">
+          
+          <footer class="navbar-dark bg-dark">
             <div class="container">
                 <p>&copy; Molbie application project.</p>
             </div>
