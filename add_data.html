@@ -91,6 +91,18 @@
       font-size: 10px;
       margin-left: auto;
     }
+    
+    .img{
+        max-width: 45%;
+        max-height: 45%;
+        margin: 0 auto; 
+        display: block;
+    }@media (max-width: 500px) {
+    .img {
+        max-width: 40%; 
+    }
+    }
+    
   </style>
 </head>
 
@@ -129,21 +141,25 @@
         </nav>
         <div id="app">
           <v-app>
-            <v-container v-if="user">
+            <v-card-actions>
+            <template v-if="user">
+              
               <div class="pa-1">
                 ยินดีต้อนรับคุณ :
                 {{user.displayName}}<br />
                 {{user.email}}<br />
               </div>
-              <v-card>
-                <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
+            </template>
 
+          </v-card-actions>
+                <img v-if="user" src="stu.png" class="img" alt="img">
+                <v-card-title class="bg">{{title}}</v-card-title>
+               
 
 
                 <v-card-actions>
-
-                  <v-btn @click="addData()" class="btn btn-success">เพิ่มนักศึกษา</v-btn>
-                  <a href="teacher_page.html" class="btn btn-success">เเสดงรายชื่อทั้งหมด</a>
+                  <v-btn @click="addData()" class="btn btn-dark" >เพิ่มนักศึกษา</v-btn>
+                  <a href="teacher_page.html" class="btn btn-light">เเสดงรายชื่อทั้งหมด</a>
                 </v-card-actions>
 
 
@@ -199,7 +215,7 @@
           const app = Vue.createApp({
             data() {
               return {
-                title: "Web/Mobile  Application : เช็คชื่อนักศึกษา",
+                title: "ระบบเช็คชื่อนักศึกษา",
                 footer: "",
                 students: [],
                 editstd: {},

@@ -71,6 +71,16 @@
       font-size: 10px;
       margin-left: auto;
     }
+    .img{
+        max-width: 45%;
+        max-height: 45%;
+        margin: 0 auto; 
+        display: block;
+    }@media (max-width: 500px) {
+    .img {
+        max-width: 40%; 
+    }
+    }
   </style>
 
 </head>
@@ -117,20 +127,21 @@
                 {{user.displayName}}<br />
                 {{user.email}}<br />
               </div>
-              <v-card>
-                <v-card-title class="bg-blue-grey">{{title}}</v-card-title>
+              
+                <img v-if="user" src="quz.png" class="img" alt="img">
+                <v-card-title class="bg">{{title}}</v-card-title>
 
 
                 <v-card-actions>
                   <!--<v-btn @click="readData()">Read Data (get)</v-btn>
                         <v-btn @click="autoRead()">Auto Read (onSnapshot)</v-btn>-->
-                  <v-btn @click="addDataqiz()" class="btn btn-info">เพิ่มคำถาม</v-btn>
-                  <v-btn @click="showsubject()" class="btn btn-info">ดูคำถามทั้งหมด</v-btn>
-                  <v-btn @click="cheksend()" class="btn btn-info">ตรวจสอบคําตอบ</v-btn>
-                  <a href="teacher_page.html" class="btn btn-success">ย้อนกลับ</a>
+                  <v-btn @click="addDataqiz()" class="btn btn-outline-secondary">เพิ่มคำถาม</v-btn>
+                  <v-btn @click="showsubject()" class="btn btn-outline-secondary">ดูคำถามทั้งหมด</v-btn>
+                  <v-btn @click="cheksend()" class="btn btn-outline-secondary">ตรวจสอบคําตอบ</v-btn>
+                  <a href="teacher_page.html" class="btn btn-dark" style="margin: 6px">ย้อนกลับ</a>
                 </v-card-actions>
 
-              </v-card>
+             
 
               <v-card-text class="pa-6" v-if="editmode==='เช็คคำตอบ'">
                 <table width="100%">
@@ -187,15 +198,15 @@
 
               <v-card v-if="editmode==='เพิ่มคำถาม'">
                 <v-card-text class="pa-6">
-                  <v-card-title class="bg-blue-grey">{{editmode}}</v-card-title>
+                  <v-card-title class="bg-tertiary">{{editmode}}</v-card-title>
                   <v-text-field v-model="editquiz.id" label="รหัส" value="Auto-ID"></v-text-field>
                   <v-text-field v-model="editquiz.quiz_name" label="คำถาม"></v-text-field>
                   <v-text-field v-model="editquiz.quiz_cus" label="โพสโดย"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
 
-                  <v-btn @click="saveqiz()" class="btn btn-success">บันทึก</v-btn>
-                  <v-btn @click="editmode=0" class="btn btn-danger">ยกเลิก</v-btn>
+                  <v-btn @click="saveqiz()" class="btn btn-outline-success">บันทึก</v-btn>
+                  <v-btn @click="editmode=0" class="btn btn-outline-danger">ยกเลิก</v-btn>
                 </v-card-actions>
               </v-card>
 
@@ -228,7 +239,7 @@
           const app = Vue.createApp({
             data() {
               return {
-                title: "Web/Mobile  Application : เช็คชื่อนักศึกษา",
+                title: "ระบบเช็คชื่อนักศึกษา",
                 footer: "",
                 students: [],
                 editstd: {},
